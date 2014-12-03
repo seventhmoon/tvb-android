@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="tvb_channel_src">
+        <item>http://token.tvb.com/stream/live/hls/mobilehd_hdj.smil</item>
+        <item>http://token.tvb.com/stream/live/hls/mobilehd_j2.smil</item>
+        <item>http://token.tvb.com/stream/live/hls/mobilehd_inews.smil</item>
+    </string-array>
+    <string-array name="tvb_channel_name">
+        <item>高清翡翠台</item>
+        <item>J2</item>
+        <item>互動新聞台</item>
+    </string-array>
+
+</resources>
