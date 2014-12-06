@@ -23,7 +23,8 @@ public class CardPresenter extends Presenter {
     private static int CARD_HEIGHT = 176;
 
     static class ViewHolder extends Presenter.ViewHolder {
-        private Movie mMovie;
+        //        private Movie mMovie;
+        private VideoChannel mVideoChannel;
         private ImageCardView mCardView;
         private Drawable mDefaultCardImage;
         private PicassoImageCardViewTarget mImageCardViewTarget;
@@ -35,13 +36,21 @@ public class CardPresenter extends Presenter {
             mDefaultCardImage = mContext.getResources().getDrawable(R.drawable.movie);
         }
 
-        public void setMovie(Movie m) {
-            mMovie = m;
+        public void setVideoChannel(VideoChannel vc) {
+            mVideoChannel = vc;
         }
 
-        public Movie getMovie() {
-            return mMovie;
+//        public void setMovie(Movie m) {
+//            mMovie = m;
+//        }
+
+        public VideoChannel getVideoChannel() {
+            return mVideoChannel;
         }
+
+//        public Movie getMovie() {
+//            return mMovie;
+//        }
 
         public ImageCardView getCardView() {
             return mCardView;
@@ -71,17 +80,19 @@ public class CardPresenter extends Presenter {
 
     @Override
     public void onBindViewHolder(Presenter.ViewHolder viewHolder, Object item) {
-        Movie movie = (Movie) item;
-        ((ViewHolder) viewHolder).setMovie(movie);
+//        Movie movie = (Movie) item;
+        VideoChannel videoChannel = (VideoChannel) item;
+        ((ViewHolder) viewHolder).setVideoChannel(videoChannel);
+
 
         Log.d(TAG, "onBindViewHolder");
-        if (movie.getCardImageUrl() != null) {
-            ((ViewHolder) viewHolder).mCardView.setTitleText(movie.getTitle());
-            ((ViewHolder) viewHolder).mCardView.setContentText(movie.getStudio());
+        if (videoChannel.getCardImageUrl() != null) {
+            ((ViewHolder) viewHolder).mCardView.setTitleText(videoChannel.getTitle());
+            ((ViewHolder) viewHolder).mCardView.setContentText(videoChannel.getStudio());
             ((ViewHolder) viewHolder).mCardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT);
             //((ViewHolder) viewHolder).mCardView.setBadgeImage(mContext.getResources().getDrawable(
             //        R.drawable.videos_by_google_icon));
-            ((ViewHolder) viewHolder).updateCardViewImage(movie.getCardImageURI());
+            ((ViewHolder) viewHolder).updateCardViewImage(videoChannel.getCardImageURI());
         }
     }
 

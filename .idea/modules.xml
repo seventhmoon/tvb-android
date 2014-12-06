@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TVBAndroid.iml" filepath="$PROJECT_DIR$/TVBAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tvb-android.iml" filepath="$PROJECT_DIR$/tvb-android.iml" />
     </modules>
   </component>
 </project>

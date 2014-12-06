@@ -1,14 +1,9 @@
 package com.tvb.android;
 
-import java.net.URI;
-import java.util.Collections;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v17.leanback.app.BackgroundManager;
@@ -31,13 +26,20 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+import com.tvb.android.ui.TvbPlayerActivity;
+
+import java.net.URI;
+import java.util.Collections;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class MainFragment extends BrowseFragment {
     private static final String TAG = "MainFragment";
 
-    private static final int NUM_ROWS = 6;
-    private static final int NUM_COLS = 15;
+    private static final int NUM_ROWS = 1;
+    private static final int NUM_COLS = 3;
 
     private ArrayObjectAdapter mRowsAdapter;
     private Drawable mDefaultBackground;
@@ -46,7 +48,7 @@ public class MainFragment extends BrowseFragment {
     private Timer mBackgroundTimer;
     private final Handler mHandler = new Handler();
     private URI mBackgroundURI;
-    Movie mMovie;
+    //    Movie mMovie;
     CardPresenter mCardPresenter;
 
     @Override
@@ -59,12 +61,23 @@ public class MainFragment extends BrowseFragment {
         setupUIElements();
 
         loadRows();
-
+//        new LoadRowsTask().execute();
         setupEventListeners();
     }
 
+    private class LoadRowsTask extends AsyncTask<Void, Void, Void>
+
+    {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            loadRows();
+            return null;
+        }
+    }
+
     private void loadRows() {
-        List<Movie> list = MovieList.setupMovies();
+        List<VideoChannel> list = VideoChannelList.setupVideoChannels();
 
         mRowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());
         mCardPresenter = new CardPresenter();
@@ -76,11 +89,14 @@ public class MainFragment extends BrowseFragment {
             }
             ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter(mCardPresenter);
             for (int j = 0; j < NUM_COLS; j++) {
-                listRowAdapter.add(list.get(j % 5));
+                listRowAdapter.add(list.get(j % NUM_COLS));
             }
-            HeaderItem header = new HeaderItem(i, MovieList.MOVIE_CATEGORY[i], null);
+            HeaderItem header = new HeaderItem(i, VideoChannelList.VIDEO_CHANNEL_CATEGORY[i], null);
             mRowsAdapter.add(new ListRow(header, listRowAdapter));
         }
+
+//        ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter(mCardPresenter);
+
 
         HeaderItem gridHeader = new HeaderItem(i, "PREFERENCES", null);
 
@@ -137,8 +153,8 @@ public class MainFragment extends BrowseFragment {
         return new OnItemSelectedListener() {
             @Override
             public void onItemSelected(Object item, Row row) {
-                if (item instanceof Movie) {
-                    mBackgroundURI = ((Movie) item).getBackgroundImageURI();
+                if (item instanceof VideoChannel) {
+                    mBackgroundURI = ((VideoChannel) item).getBackgroundImageURI();
                     startBackgroundTimer();
                 }
             }
@@ -149,11 +165,12 @@ public class MainFragment extends BrowseFragment {
         return new OnItemClickedListener() {
             @Override
             public void onItemClicked(Object item, Row row) {
-                if (item instanceof Movie) {
-                    Movie movie = (Movie) item;
+                if (item instanceof VideoChannel) {
+                    VideoChannel videoChannel = (VideoChannel) item;
                     Log.d(TAG, "Item: " + item.toString());
-                    Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                    intent.putExtra(getString(R.string.movie), movie);
+//                    Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                    Intent intent = new Intent(getActivity(), TvbPlayerActivity.class);
+                    intent.putExtra(getString(R.string.video_channel), videoChannel);
                     startActivity(intent);
                 } else if (item instanceof String) {
                     Toast.makeText(getActivity(), (String) item, Toast.LENGTH_SHORT)

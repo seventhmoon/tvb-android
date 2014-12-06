@@ -28,6 +28,7 @@
     <string name="buy_1">Buy and Own</string>
     <string name="buy_2">AT $9.99</string>
     <string name="movie">Movie</string>
+    <string name="video_channel">Video Channel</string>
     <string name="should_start">shouldStart</string>
     <string name="start_position">startPosition</string>
     <string name="search_results">Search Results</string>
