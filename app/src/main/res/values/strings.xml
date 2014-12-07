@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">TVB Android</string>
-    <string name="browse_title"><![CDATA[Videos by Your Company]]></string>
+    <string name="browse_title"><![CDATA[TVB (Unofficial)]]></string>
     <string name="related_movies">Related Videos</string>
     <string name="vertical_grid_title"><![CDATA[Vertical Video Grid]]></string>
     <string name="error">Error</string>

@@ -19,7 +19,6 @@ import android.support.v17.leanback.widget.Row;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -98,14 +97,14 @@ public class MainFragment extends BrowseFragment {
 //        ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter(mCardPresenter);
 
 
-        HeaderItem gridHeader = new HeaderItem(i, "PREFERENCES", null);
-
-        GridItemPresenter mGridPresenter = new GridItemPresenter();
-        ArrayObjectAdapter gridRowAdapter = new ArrayObjectAdapter(mGridPresenter);
-        gridRowAdapter.add(getResources().getString(R.string.grid_view));
-        gridRowAdapter.add(getResources().getString(R.string.send_feeback));
-        gridRowAdapter.add(getResources().getString(R.string.personal_settings));
-        mRowsAdapter.add(new ListRow(gridHeader, gridRowAdapter));
+//        HeaderItem gridHeader = new HeaderItem(i, "PREFERENCES", null);
+//
+//        GridItemPresenter mGridPresenter = new GridItemPresenter();
+//        ArrayObjectAdapter gridRowAdapter = new ArrayObjectAdapter(mGridPresenter);
+//        gridRowAdapter.add(getResources().getString(R.string.grid_view));
+//        gridRowAdapter.add(getResources().getString(R.string.send_feeback));
+//        gridRowAdapter.add(getResources().getString(R.string.personal_settings));
+//        mRowsAdapter.add(new ListRow(gridHeader, gridRowAdapter));
 
         setAdapter(mRowsAdapter);
 
@@ -134,19 +133,19 @@ public class MainFragment extends BrowseFragment {
         // set fastLane (or headers) background color
         setBrandColor(getResources().getColor(R.color.fastlane_background));
         // set search icon color
-        setSearchAffordanceColor(getResources().getColor(R.color.search_opaque));
+//        setSearchAffordanceColor(getResources().getColor(R.color.search_opaque));
     }
 
     private void setupEventListeners() {
         setOnItemSelectedListener(getDefaultItemSelectedListener());
         setOnItemClickedListener(getDefaultItemClickedListener());
-        setOnSearchClickedListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(), "Implement your own in-app search", Toast.LENGTH_LONG)
-                        .show();
-            }
-        });
+//        setOnSearchClickedListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(getActivity(), "Implement your own in-app search", Toast.LENGTH_LONG)
+//                        .show();
+//            }
+//        });
     }
 
     protected OnItemSelectedListener getDefaultItemSelectedListener() {
@@ -233,7 +232,7 @@ public class MainFragment extends BrowseFragment {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent) {
             TextView view = new TextView(parent.getContext());
-            view.setLayoutParams(new ViewGroup.LayoutParams(200, 200));
+            view.setLayoutParams(new ViewGroup.LayoutParams(225, 200));
             view.setFocusable(true);
             view.setFocusableInTouchMode(true);
             view.setBackgroundColor(getResources().getColor(R.color.default_background));
